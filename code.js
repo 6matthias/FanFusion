@@ -58,9 +58,9 @@ $(document).ready(function () {
 
     }
 
-    $('#emo1').change(update())
+    $('#emo1').change(function() {update()})
 
-    $('#emo2').change(update())
+    $('#emo2').change(function() {update()})
 
     $(".emote1").attr("src", `assets/fusions/1_0.png`);
     $(".emote2").attr("src", `assets/fusions/1_0.png`);
