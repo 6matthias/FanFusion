@@ -1,0 +1,101 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+.frame {
+    width: 400px;
+    height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #00C9FF;
+    outline: 5px solid #0071E5;
+
+}
+
+header{
+    width: 100%;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    background-color: #0071E5;
+
+}
+
+footer {
+    background-color: #0096FF;
+    padding: 25px;
+}
+
+
+.shadow {
+    width: 100%;
+    height: 20px;
+    background-color: #0096FF;
+}
+
+#title {
+
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.resultFrame {
+    width: 100%;
+    float: left;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 50px;
+    margin-top: 50px;
+}
+
+.result {
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+selection {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 50px;
+}
+
+.left {
+    width: 125px;
+    float: left;
+
+}
+
+.right {
+    width: 125px;
+    float: left;
+    
+}
+
+.horSpa {
+    width: 100%;
+    height: 100px;
+    margin: auto;
+}
+
+.midCol {
+    width: 50px;
+}
+
+.sepa {
+    width: 100%;
+    display: flex;
+    justify-content: center
+}
+
+#emo1 {
+
+    width: 100%;
+}
+
+#emo2 {
+
+    width: 100%;
+}
