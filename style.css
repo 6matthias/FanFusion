@@ -82,6 +82,14 @@ selection {
 
 .midCol {
     width: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#flip {
+    width: 32px;
+    height: 32px;
 }
 
 .sepa {

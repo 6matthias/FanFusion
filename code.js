@@ -1,4 +1,3 @@
-$(document).ready(function () {
 
     function update() {
 
@@ -8,6 +7,18 @@ $(document).ready(function () {
         $(".result").attr("src", `assets/fusions/${one}_${two}.png`);
 
     }
+
+    function flip() {
+        let cache = $('#emo1').find(":selected").val();
+        $('#emo1').find(":selected").val($('#emo2').find(":selected").val()).change()
+        $('#emo2').find(":selected").val(cache).change()
+    
+        update()
+    }
+
+
+$(document).ready(function () {
+    
 
     let mojicount = 32
     const mojinames =
