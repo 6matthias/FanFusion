@@ -3,14 +3,25 @@
 	padding: 0;
 }
 
+@media only screen and (max-width: 600px) {
+    .frame {
+        width: 100%;
+    }
+}
+
+@media only screen and (min-width: 600px) {
+    .frame {
+        width: 60%;
+        max-width: 600px;
+    }
+}
+
 .frame {
-    width: 400px;
     height: 100%;
     margin-left: auto;
     margin-right: auto;
     background-color: #00C9FF;
     outline: 5px solid #0071E5;
-
 }
 
 header{
