@@ -69,20 +69,14 @@ footer {
 selection {
     width: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     margin-bottom: 50px;
 }
 
-.left {
+.dir {
     width: 125px;
     float: left;
 
-}
-
-.right {
-    width: 125px;
-    float: left;
-    
 }
 
 .horSpa {
@@ -117,12 +111,23 @@ selection {
     justify-content: center
 }
 
-#emo1 {
+.emo {
 
     width: 100%;
+    padding: 2px;
+    margin-top: 5px;
 }
 
-#emo2 {
+.result {
+    -webkit-filter: drop-shadow(5px 5px 5px #00000062);
+    filter: drop-shadow(5px 5px 5px #00000062);
+}
 
-    width: 100%;
+.emote {
+    -webkit-filter: drop-shadow(5px 5px 5px #0000002f);
+    filter: drop-shadow(3px 3px 3px #0000002f);
+}
+
+.tappy:hover {
+    cursor: grab;
 }

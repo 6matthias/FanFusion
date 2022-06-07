@@ -38,6 +38,7 @@ let mojicount = mojinames.split(";").length+1
 
 $(document).ready(function () {
     
+    $("#credit").text(`${(mojicount - 1) ** 2} emojis fusioned manually by @MrXCube`)
 
     let names = mojinames.split(";")
     for (var i = 1; i < mojicount; i++) {
@@ -60,8 +61,53 @@ $(document).ready(function () {
 
     $('#emo2').change(function() {update()})
 
+
     $(".emote1").attr("src", `assets/fusions/1_0.png`);
     $(".emote2").attr("src", `assets/fusions/1_0.png`);
     update();
 
 }) 
+
+$(window).on('load', function(){
+
+    let resultRot = 0
+    let inv = false
+
+    console.log(resultRot)
+
+
+    $(".tappy").click(function() {
+
+        let newrot = 2
+
+        if ($(this).data("rot")) {
+            newrot = Math.abs($(this).data("rot"))+2
+        }
+
+        if ($(this).data("inv")) {
+            newrot = -newrot
+        }
+        $(this).data("rot", newrot)
+
+
+        $(this).data("inv", !$(this).data("inv"))
+    })
+
+    setInterval(function () {
+
+        $(".tappy").each(function(i, obj) {
+
+            if ($(obj).data("rot")) {
+
+                $(obj).css("transform", `rotate(${$(obj).data("rot")}deg)`)
+    
+                $(obj).data("rot", $(obj).data("rot")*0.85)
+    
+            }
+
+        } )
+
+
+    }, 20);
+
+})
