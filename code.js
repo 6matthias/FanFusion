@@ -1,4 +1,6 @@
-let mojicount = 32
+const mojinames =
+    "Surprised;Blush;Confused;Crying;Dissapoint;Flush;Happy;Laugh;Putoff;Puzzled;Sad;Shocked;Sleep;Sweating;Sweat Sideye;Sweatsmile <3;Think;Troll;Upside Down;Wink;Star;Imp;Earth/Wiki;Coin;Heart/Love;Mind Blown;Yes;No;Sweat Think;Relief;Nope;Scarred";
+let mojicount = mojinames.split(";").length+1
 
     function update() {
 
@@ -36,10 +38,6 @@ let mojicount = 32
 
 $(document).ready(function () {
     
-
-    
-    const mojinames =
-        "Surprised;Blush;Confused;Crying;Dissapoint;Flush;Happy;Laugh;Putoff;Puzzled;Sad;Shocked;Sleep;Sweating;Sweat Sideye;Sweatsmile <3;Think;Troll;Upside Down;Wink;Star;Imp;Earth/Wiki;Coin;Heart/Love;Mind Blown;Yes;No;Sweat Think;Relief;Nope;Scarred";
 
     let names = mojinames.split(";")
     for (var i = 1; i < mojicount; i++) {
