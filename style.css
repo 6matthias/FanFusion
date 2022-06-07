@@ -20,7 +20,8 @@
     height: 100%;
     margin-left: auto;
     margin-right: auto;
-    background-color: #00C9FF;
+    background: rgb(0,228,255);
+    background: radial-gradient(circle, rgba(0,228,255,1) 0%, rgba(0,176,255,1) 100%);
     outline: 5px solid #0071E5;
 }
 
@@ -71,6 +72,7 @@ selection {
     display: flex;
     justify-content: space-evenly;
     margin-bottom: 50px;
+
 }
 
 .dir {
