@@ -1,5 +1,16 @@
+const syllableRegex = /[^aeiouy]*[aeiouy]+(?:[^aeiouy]*$|[^aeiouy](?=[^aeiouy]))?/gi;
+
+function syllabify(words) {
+    words = words.replace(" ","").toLowerCase();
+    return words.match(syllableRegex);
+}
+
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+
 const mojinames =
-    "Surprised;Blush;Confused;Crying;Dissapoint;Flush;Happy;Laugh;Putoff;Puzzled;Sad;Shocked;Sleep;Sweating;Sweat Sideye;Sweatsmile <3;Think;Troll;Upside Down;Wink;Star;Imp;Earth/Wiki;Coin;Heart/Love;Mind Blown;Yes;No;Sweat Think;Relief;Nope;Scarred";
+    "Surprised;Blush;Confused;Crying;Dissapoint;Flush;Happy;Laugh;Putoff;Puzzled;Sad;Shocked;Sleep;Sweating;Sweat Sideye;Sweatsmile;Think;Troll;Upside Down;Wink;Star;Imp;Wiki;Coin;Love;Mind Blown;Yes;No;Sweat Think;Relief;Nope;Scarred";
 let mojicount = mojinames.split(";").length+1
 
     function update() {
@@ -10,10 +21,27 @@ let mojicount = mojinames.split(";").length+1
         currSel = $('#emo2').find(":selected").val();
         $(".emote2").attr("src", `assets/fusions/${currSel}_0.png`);
 
-        let one = $('#emo1').find(":selected").val();
-        let two = $('#emo2').find(":selected").val();
+        let one = $('#emo1').find(":selected");
+        let two = $('#emo2').find(":selected");
 
-        $(".result").attr("src", `assets/fusions/${one}_${two}.png`);
+        $(".result").attr("src", `assets/fusions/${one.val()}_${two.val()}.png`);
+
+        let firstSec = syllabify(one.text()) 
+        firstSec.length = Math.max(Math.floor(firstSec.length/2), 1)
+        firstSec = firstSec.join("") 
+
+        console.log(two.text())
+        let ndSec = syllabify(two.text())
+        console.log(ndSec)
+        ndSec.splice(0, Math.floor(ndSec.length/2))
+        console.log(ndSec)
+        ndSec = ndSec.join("")
+        console.log(ndSec) 
+
+        let newtitle = capitalizeFirstLetter(firstSec + ndSec)
+
+
+        $("#mixName").text(newtitle)
 
     }
 
