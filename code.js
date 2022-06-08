@@ -1,8 +1,18 @@
 const syllableRegex = /[^aeiouy]*[aeiouy]+(?:[^aeiouy]*$|[^aeiouy](?=[^aeiouy]))?/gi;
 
 function syllabify(words) {
-    words = words.replace(" ","").toLowerCase();
-    return words.match(syllableRegex);
+    if (words.includes(" ")) {
+        let l = words.split(" ").length;
+        let splitted = words.split(" ")
+        let batch = [];
+        for (let i = 0; i<l; i++) {
+            let newSplit = splitted[i].match(syllableRegex)
+            batch = batch.concat(newSplit)
+        }
+        return batch;
+    } else {
+        return words.match(syllableRegex);
+    }
 }
 
 function capitalizeFirstLetter(string) {
@@ -10,7 +20,7 @@ function capitalizeFirstLetter(string) {
   }
 
 const mojinames =
-    "Surprised;Blush;Confused;Crying;Dissapoint;Flush;Happy;Laugh;Putoff;Puzzled;Sad;Shocked;Sleep;Sweating;Sweat Sideye;Sweatsmile;Think;Troll;Upside Down;Wink;Star;Imp;Wiki;Coin;Love;Mind Blown;Yes;No;Sweat Think;Relief;Nope;Scarred";
+    "Surprised;Blush;Confused;Crying;Dissapoint;Flush;Happy;Laugh;Putoff;Puzzled;Sad;Shocked;Sleep;Sweating;Suspicious;Sweatsmile;Think;Troll;Flipped;Wink;Star;Imp;Wiki;Coin;Love;Mind Blown;Yes;No;Sweat Think;Relief;Nope;Scarred";
 let mojicount = mojinames.split(";").length+1
 
     function update() {
@@ -26,19 +36,24 @@ let mojicount = mojinames.split(";").length+1
 
         $(".result").attr("src", `assets/fusions/${one.val()}_${two.val()}.png`);
 
-        let firstSec = syllabify(one.text()) 
-        firstSec.length = Math.max(Math.floor(firstSec.length/2), 1)
-        firstSec = firstSec.join("") 
+        let firstSec = syllabify(one.text())
+        if(firstSec.length>1){
+            firstSec.pop();
+            firstSec = firstSec.join("");
+        } else {
+            firstSec = firstSec[0]
+            firstSec = firstSec.substr(0, Math.ceil(firstSec.length/2));
+        }
 
-        console.log(two.text())
         let ndSec = syllabify(two.text())
-        console.log(ndSec)
-        ndSec.splice(0, Math.floor(ndSec.length/2))
-        console.log(ndSec)
-        ndSec = ndSec.join("")
-        console.log(ndSec) 
+        if(ndSec.length>1){
+            ndSec = ndSec.pop();
+        } else {
+            ndSec = ndSec.join("").substr(Math.floor(ndSec.join("").length/2), Math.floor(ndSec.join("").length));
+        }
 
-        let newtitle = capitalizeFirstLetter(firstSec + ndSec)
+        let newtitle = firstSec + ndSec
+        newtitle = capitalizeFirstLetter(newtitle.toLowerCase())
 
 
         $("#mixName").text(newtitle)
