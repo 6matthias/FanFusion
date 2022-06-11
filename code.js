@@ -5,7 +5,7 @@ function syllabify(words) {
         let l = words.split(" ").length;
         let splitted = words.split(" ")
         let batch = [];
-        for (let i = 0; i<l; i++) {
+        for (let i = 0; i < l; i++) {
             let newSplit = splitted[i].match(syllableRegex)
             batch = batch.concat(newSplit)
         }
@@ -17,70 +17,79 @@ function syllabify(words) {
 
 function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
-  }
+}
 
 const mojinames =
     "Surprised;Blush;Confused;Crying;Dissapoint;Flush;Happy;Laugh;Putoff;Puzzled;Sad;Shocked;Sleep;Sweating;Suspicious;Sweatsmile;Think;Troll;Flipped;Wink;Star;Imp;Wiki;Coin;Love;Mind Blown;Yes;No;Sweat Think;Relief;Nope;Scarred";
-let mojicount = mojinames.split(";").length+1
+let mojicount = mojinames.split(";").length + 1
 
-    function update() {
+function update() {
 
-        let currSel = $('#emo1').find(":selected").val();
-        $(".emote1").attr("src", `assets/fusions/${currSel}_0.png`);
+    let currSel = $('#emo1').find(":selected").val();
+    $(".emote1").attr("src", `assets/fusions/${currSel}_0.png`);
 
-        currSel = $('#emo2').find(":selected").val();
-        $(".emote2").attr("src", `assets/fusions/${currSel}_0.png`);
+    currSel = $('#emo2').find(":selected").val();
+    $(".emote2").attr("src", `assets/fusions/${currSel}_0.png`);
 
-        let one = $('#emo1').find(":selected");
-        let two = $('#emo2').find(":selected");
+    let one = $('#emo1').find(":selected");
+    let two = $('#emo2').find(":selected");
 
-        $(".result").attr("src", `assets/fusions/${one.val()}_${two.val()}.png`);
+    $(".result").attr("src", `assets/fusions/${one.val()}_${two.val()}.png`);
+
+    let newtitle = ""
+
+    if (one.val() == two.val()) {
+        newtitle = one.text()
+    } else {
 
         let firstSec = syllabify(one.text())
-        if(firstSec.length>1){
+        if (firstSec.length > 1) {
             firstSec.pop();
             firstSec = firstSec.join("");
         } else {
             firstSec = firstSec[0]
-            firstSec = firstSec.substr(0, Math.ceil(firstSec.length/2));
+            firstSec = firstSec.substr(0, Math.ceil(firstSec.length / 2));
         }
 
         let ndSec = syllabify(two.text())
-        if(ndSec.length>1){
+        if (ndSec.length > 1) {
             ndSec = ndSec.pop();
         } else {
-            ndSec = ndSec.join("").substr(Math.floor(ndSec.join("").length/2), Math.floor(ndSec.join("").length));
+            ndSec = ndSec.join("").substr(Math.floor(ndSec.join("").length / 2), Math.floor(ndSec.join("").length));
         }
 
-        let newtitle = firstSec + ndSec
+        newtitle = firstSec + ndSec
         newtitle = capitalizeFirstLetter(newtitle.toLowerCase())
 
-
-        $("#mixName").text(newtitle)
-
     }
 
-    function flip() {
-        let cache = $('#emo1').find(":selected").val();
-        $('#emo1').val($('#emo2').find(":selected").val()).change()
-        $('#emo2').val(cache).change()
 
-        update()
-    }
 
-    function random() {
-        $('#emo1').val(Math.floor(Math.random()*(mojicount-1))+1)
-        $('#emo2').val(Math.floor(Math.random()*(mojicount-1))+1)
+    $("#mixName").text(newtitle)
 
-        console.log()
+}
 
-        update($('#emo1').val())
-        update($('#emo2').val())
-    }
+function flip() {
+    let cache = $('#emo1').find(":selected").val();
+    $('#emo1').val($('#emo2').find(":selected").val()).change()
+    $('#emo2').val(cache).change()
+
+    update()
+}
+
+function random() {
+    $('#emo1').val(Math.floor(Math.random() * (mojicount - 1)) + 1)
+    $('#emo2').val(Math.floor(Math.random() * (mojicount - 1)) + 1)
+
+    console.log()
+
+    update($('#emo1').val())
+    update($('#emo2').val())
+}
 
 
 $(document).ready(function () {
-    
+
     $("#credit").text(`${(mojicount - 1) ** 2} emojis fusioned manually by @MrXCube`)
 
     let names = mojinames.split(";")
@@ -100,18 +109,18 @@ $(document).ready(function () {
 
     }
 
-    $('#emo1').change(function() {update()})
+    $('#emo1').change(function () { update() })
 
-    $('#emo2').change(function() {update()})
+    $('#emo2').change(function () { update() })
 
 
     $(".emote1").attr("src", `assets/fusions/1_0.png`);
     $(".emote2").attr("src", `assets/fusions/1_0.png`);
     update();
 
-}) 
+})
 
-$(window).on('load', function(){
+$(window).on('load', function () {
 
     let resultRot = 0
     let inv = false
@@ -119,12 +128,12 @@ $(window).on('load', function(){
     console.log(resultRot)
 
 
-    $(".tappy").click(function() {
+    $(".tappy").click(function () {
 
         let newrot = 2
 
         if ($(this).data("rot")) {
-            newrot = Math.abs($(this).data("rot"))+2
+            newrot = Math.abs($(this).data("rot")) + 2
         }
 
         if ($(this).data("inv")) {
@@ -138,17 +147,17 @@ $(window).on('load', function(){
 
     setInterval(function () {
 
-        $(".tappy").each(function(i, obj) {
+        $(".tappy").each(function (i, obj) {
 
             if ($(obj).data("rot")) {
 
                 $(obj).css("transform", `rotate(${$(obj).data("rot")}deg)`)
-    
-                $(obj).data("rot", $(obj).data("rot")*0.85)
-    
+
+                $(obj).data("rot", $(obj).data("rot") * 0.85)
+
             }
 
-        } )
+        })
 
 
     }, 20);
