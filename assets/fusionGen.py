@@ -3,10 +3,10 @@ from PIL import Image as im
 full = im.open("./full.png")
 
 size = full.size[0]
-print(size)
-mojiCount = 33
+mojiSize = 180
 
-mojiSize = size/mojiCount
+mojiCount = int(size/mojiSize) 
+
 for y in range(mojiCount):
     for x in range(mojiCount):
         newCrop = full.crop((x*mojiSize, y*mojiSize, (x+1/9*8)*mojiSize, (y+1/9*8)*mojiSize))
