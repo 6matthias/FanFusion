@@ -20,7 +20,7 @@ function capitalizeFirstLetter(string) {
 }
 
 const mojinames =
-    "Surprised;Blush;Confused;Crying;Dissapoint;Flush;Happy;Laugh;Putoff;Puzzled;Sad;Screaming;Sleep;Sweating;Suspicious;Sweatsmile;Think;Troll;Flipped;Wink;Star;Imp;Wiki;Coin;Love;Mind Blown;Yes;No;Sweat Think;Relief;Nope;Concerned;Skull;Shocked;Cool";
+    "Surprised;Blush;Confused;Crying;Dissapoint;Flush;Happy;Laugh;Putoff;Puzzled;Sad;Screaming;Sleep;Sweating;Suspicious;Sweatsmile;Think;Troll;Flipped;Wink;Star;Imp;Wiki;Coin;Love;Mind Blown;Yes;No;Sweat Think;Relief;Nope;Concerned;Skull;Shocked;Cool;Lelcube";
 let mojicount = mojinames.split(";").length + 1
 
 function update() {
