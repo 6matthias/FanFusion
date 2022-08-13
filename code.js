@@ -34,7 +34,9 @@ function update() {
     let one = $('#emo1').find(":selected");
     let two = $('#emo2').find(":selected");
 
-    $(".result").attr("src", `assets/fusions/${one.val()}_${two.val()}.png`);
+    let newLink = `assets/fusions/${one.val()}_${two.val()}.png`
+
+    $(".result").attr("src", newLink);
 
     let newtitle = ""
 
@@ -67,6 +69,9 @@ function update() {
 
     $("#mixName").text(newtitle)
 
+    $("#down").attr('download', newtitle);
+    $("#down").attr('href', newLink);
+
 }
 
 function flip() {
@@ -81,10 +86,12 @@ function random() {
     $('#emo1').val(Math.floor(Math.random() * (mojicount - 1)) + 1)
     $('#emo2').val(Math.floor(Math.random() * (mojicount - 1)) + 1)
 
-    console.log()
-
     update($('#emo1').val())
     update($('#emo2').val())
+}
+
+function revealSave() {
+    $('.save').slideDown("slow")
 }
 
 
@@ -124,11 +131,22 @@ $(window).on('load', function () {
 
     let resultRot = 0
     let inv = false
+    let saveReveal = 0.0
+    let reveal = false
 
     console.log(resultRot)
 
 
     $(".tappy").click(function () {
+
+        if (!reveal){
+            saveReveal = saveReveal + 1
+
+            if (saveReveal > 5){
+                revealSave()
+            }
+    
+        }
 
         let newrot = 2
 
@@ -146,6 +164,10 @@ $(window).on('load', function () {
     })
 
     setInterval(function () {
+
+        if (!reveal){
+            saveReveal = Math.max(0, saveReveal - 0.05)
+        }
 
         $(".tappy").each(function (i, obj) {
 
