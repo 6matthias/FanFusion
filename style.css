@@ -165,9 +165,13 @@ selection {
 }
 
 .tappy:hover {
-    cursor: grab;
+    cursor: url("https://cdn.discordapp.com/emojis/916153366130884630.webp?size=32"), auto;
 }
 
 .save:hover {
-    cursor:pointer
+    cursor: url("https://cdn.discordapp.com/emojis/678230225737351170.webp?size=32"), auto;
+}
+
+html{
+    cursor: url("https://cdn.discordapp.com/emojis/678182561385676811.webp?size=32"), auto;
 }
