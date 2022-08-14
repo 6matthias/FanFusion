@@ -3,7 +3,7 @@
 	padding: 0;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 750px) {
     .frame {
         width: 100%;
     }
@@ -14,7 +14,7 @@
     
 }
 
-@media only screen and (min-width: 600px) {
+@media only screen and (min-width: 750px) {
     .frame {
         width: 60%;
         max-width: 600px;
@@ -61,7 +61,10 @@ header{
 
 footer {
     background-color: #0096FF;
-    padding: 25px;
+    align-items: center;
+    height: 120px;
+    display: flexbox;
+    align-content: center;
 }
 
 
@@ -174,4 +177,26 @@ selection {
 
 html{
     cursor: url("https://cdn.discordapp.com/emojis/678182561385676811.webp?size=32"), auto;
+}
+
+#credit {
+    text-align: left;
+    font-weight: bolder;
+    font-size: 300%;
+    font-family: sans-serif;
+    color:#00DBFF;
+    padding-left: 5vw;
+    padding-top: 32.5px;
+    padding-bottom: 32.5px;
+    float: left;
+    margin: auto;
+}
+
+#creditImg {
+    float: right;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-right: 5vw;
+    border-radius: 10%;
+    outline: #00DBFF solid 5px;
 }

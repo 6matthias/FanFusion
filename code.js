@@ -19,8 +19,36 @@ function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
+const credits = [
+    {"name": "MrXCube", "created": ["1-36"]},
+    {"name": "R3DZ3R", "created": [0,37]}
+
+]
+
+credits.forEach(function(x, creditIndex) {
+
+    x.created.forEach(function (x2, numberIndex) {
+        if((typeof x2) == "string"){
+            let range = x2.split("-")
+
+            let l = Number(range[1])+1
+
+            x.created.splice(numberIndex, 1)
+
+            for(let i=range[0]; i<l; i++) {
+                x.created.push(Number(i))
+            }
+
+        }
+
+    })
+
+})
+
+console.log(credits)
+
 const mojinames =
-    "Surprised;Blush;Confused;Crying;Dissapoint;Flush;Happy;Laugh;Putoff;Puzzled;Sad;Screaming;Sleep;Sweating;Suspicious;Sweatsmile;Think;Troll;Flipped;Wink;Star;Imp;Wiki;Coin;Love;Mind Blown;Yes;No;Sweat Think;Relief;Nope;Concerned;Skull;Shocked;Cool;Lelcube";
+    "Surprised;Blush;Confused;Crying;Dissapoint;Flush;Happy;Laugh;Putoff;Puzzled;Sad;Screaming;Sleep;Sweating;Suspicious;Sweat Smile;Think;Troll;Flipped;Wink;Star;Imp;Wiki;Coin;Love;Mind Blown;Yes;No;Sweat Think;Relief;Nope;Concerned;Skull;Shocked;Cool;Lel Cube;Zeriously";
 let mojicount = mojinames.split(";").length + 1
 
 function update() {
@@ -72,6 +100,21 @@ function update() {
     $("#down").attr('download', newtitle);
     $("#down").attr('href', newLink);
 
+
+    let creditnumber = Math.max(Number(one.val()), Number(two.val()))
+    let creditname = "idk"
+
+    credits.some(function(x) {
+        if (x.created.includes(creditnumber)) {
+            creditname = x.name
+            return
+        }
+    })
+
+    $("#creditImg").attr('src', `./assets/credits/${creditname}.png`);
+    $("#creditImg").attr('alt', creditname);
+    $("#creditImg").attr('title', creditname);
+
 }
 
 function flip() {
@@ -97,7 +140,7 @@ function revealSave() {
 
 $(document).ready(function () {
 
-    $("#credit").text(`${(mojicount - 1) ** 2} emojis fusioned manually by @MrXCube`)
+    /* $("#credit").text(`${(mojicount - 1) ** 2} emojis fusioned manually by @MrXCube`) */
 
     let names = mojinames.split(";")
     for (var i = 1; i < mojicount; i++) {
