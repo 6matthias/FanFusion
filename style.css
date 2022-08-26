@@ -211,6 +211,7 @@ html{
 
 .historySec {
     height: 120px;
+    width: 100%;
     padding-top: 10px;
     padding-bottom: 10px;
     display: flex;
@@ -221,7 +222,7 @@ html{
 
 .hispart {
     height: 120px;
-    width: calc((100% - 120px)/2);
+    width: calc((100% - 125px)/2);
     display: flex;
     align-items: center;
     justify-content: center;
