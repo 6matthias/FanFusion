@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,66 +10,79 @@
     <script src="code.js"></script>
     <title>Fan Fusion</title>
 </head>
+
 <body>
-<main>
+    <main>
 
-    <a id="down" download="none.png" href="./assets/title.png" title="Emote"><img class="save" width="80" height="85" src="./assets/save.png"></a>
+        <a id="down" download="none.png" href="./assets/title.png" title="Emote"><img class="save" width="80"
+        height="85" src="./assets/save.png"></a>
 
-    <div class="frame">
-        <header>
+        <div class="frame">
+            <header>
 
-            <img id="title" src="./assets/title.png">
+                <img id="title" src="./assets/title.png">
 
-        </header>
-        <div class="shadow"></div>
+            </header>
 
-        <div class="mixSpace">
-            <h1 id="mixName"></h1>
+            <div id="gradBack">
+
+                <div class="shadow"></div>
+
+
+                <div class="mixSpace">
+                    <h1 id="mixName"></h1>
+                </div>
+
+                <result class="resultFrame">
+                    <img class="result tappy" width="160" height="160">
+                    <img id="crown" src="./assets/crown.png" width="320" height="320" >
+                </result>
+
+                <selection>
+                    <div class="left dir">
+
+                        <div class="sepa">
+
+                            <img class="emote1 emote tappy" width="80" height="80">
+                            <label for="emo1"></label>
+
+                        </div>
+
+                        <select name="none" id="emo1" class="emo" is="ms-dropdown"></select>
+
+                    </div>
+                    <div class="midCol">
+                        <input type="image" src="./assets/flip.png" id="flip" onclick="flip()">
+                        <input type="image" src="./assets/dice.png" id="random" onclick="random()">
+                    </div>
+                    <div class="right dir">
+
+                        <div class="sepa">
+
+                            <img class="emote2 emote tappy" width="80" height="80">
+                            <label for="emo2"></label>
+
+                        </div>
+
+                        <select name="none" id="emo2" class="emo" is="ms-dropdown"></select>
+
+                    </div>
+                </selection>
+
+                <p id="foundCounter">Found: ---- : ---- </p>
+                <footer>
+                    <p id="credit">Fusion by:</p>
+                    <img id="creditImg" width="100" height="100" src="./assets/fusions/0_3.png">
+                </footer>
+
+            </div>
+
+            <div id="history">
+
+            </div>
         </div>
-
-        <result class="resultFrame">
-            <img class="result tappy" width="160" height="160">
-        </result>
-
-        <selection> 
-            <div class = "left dir">
-
-                <div class="sepa">
-
-                    <img class="emote1 emote tappy" width="80" height="80">
-                    <label for="emo1"></label>
-
-                </div>
-
-                <select name="none" id="emo1" class="emo" is="ms-dropdown"></select>
-                
-            </div>
-            <div class="midCol">
-                <input type="image" src="./assets/flip.png" id="flip" onclick="flip()">
-                <input type="image" src="./assets/dice.png" id="random" onclick="random()">
-            </div>
-            <div class = "right dir">
-
-                <div class="sepa">
-
-                    <img class="emote2 emote tappy" width="80" height="80">
-                    <label for="emo2"></label>
-
-                </div>
-                
-                <select name="none" id="emo2" class="emo" is="ms-dropdown"></select>
-
-            </div>
-        </selection>
-        
-
-        <footer>
-            <p id="credit">Fusion by:</p>
-            <img id="creditImg" width="100" height="100" src="./assets/fusions/0_3.png">
-        </footer>
-
-    </div>
-</main>
+    </main>
 </body>
 <script src="main.js"></script>
+
 </html>

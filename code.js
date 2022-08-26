@@ -1,4 +1,5 @@
 const syllableRegex = /[^aeiouy]*[aeiouy]+(?:[^aeiouy]*$|[^aeiouy](?=[^aeiouy]))?/gi;
+const saveKey = "history" //key "history"
 
 function syllabify(words) {
     if (words.includes(" ")) {
@@ -18,6 +19,8 @@ function syllabify(words) {
 function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
+
+const storeComp = typeof(Storage) !== "undefined"
 
 const credits = [
     {"name": "MrXCube", "created": ["1-36"]},
@@ -45,19 +48,68 @@ credits.forEach(function(x, creditIndex) {
 
 })
 
-console.log(credits)
-
 const mojinames =
-    "Surprised;Blush;Confused;Crying;Dissapoint;Flush;Happy;Laugh;Putoff;Puzzled;Sad;Screaming;Sleep;Sweating;Suspicious;Sweat Smile;Think;Troll;Flipped;Wink;Star;Imp;Wiki;Coin;Love;Mind Blown;Yes;No;Sweat Think;Relief;Nope;Concerned;Skull;Shocked;Cool;Lel Cube;Zeriously";
-let mojicount = mojinames.split(";").length + 1
+    "Surprised;Blush;Confused;Crying;Dissapoint;Flush;Happy;Laugh;Putoff;Puzzled;Sad;Screaming;Sleep;Sweating;Suspicious;SweatSmile;Think;Troll;Flipped;Wink;Star;Imp;Wiki;Coin;Love;MindBlown;Yes;No;SweatThink;Relief;Nope;Concerned;Skull;Shocked;Cool;LelCube;Zeriously";
+let mojicount = mojinames.split(";").length
+
+let historyHistory= []
+
+let crown = false;
+
+function addHistory(emo1, emo2, save) {
+
+    let newHistory = emo1.val()+"_"+emo2.val()
+
+    if (historyHistory.includes(newHistory)) {return}
+
+    historyHistory.push(newHistory)
+
+    document.querySelector('#history').insertAdjacentHTML("afterbegin",
+    `
+    <div class="historySec">
+        <div class="hispart spart hp1">
+            <div class="horSpace"></div>
+            <img src="./assets/fusions/0_${emo1.val()}.png" alt="" width="80" height="80" class="tappy emote">
+            <p>${emo1.text()}</p>
+        </div>
+
+        <div class="hisres hispart">
+            <img src="./assets/fusions/${emo1.val()}_${emo2.val()}.png" alt="" width="120" height="120" class="tappy emote">
+        </div>
+
+        <div class="hispart spart hp2">
+            <div class="horSpace"></div>
+            <img src="./assets/fusions/0_${emo2.val()}.png" alt="" width="80" height="80" class="tappy emote">
+            <p>${emo2.text()}</p>
+        </div>
+    </div>
+    `)
+    
+    $("#foundCounter").text(`Found: ${historyHistory.length} / ${Math.pow(mojicount, 2)}` )
+    if(historyHistory.length == Math.pow(mojicount, 2)){
+        $(`#crown`).show();
+        crown = true
+    }
+
+    if (save) {
+        localStorage.setItem(saveKey, historyHistory.join("|"));
+    }
+
+}
 
 function update() {
 
-    let currSel = $('#emo1').find(":selected").val();
+    let currSel = $('#emo1').find(":selected")
+    let currSel2 = $('#emo2').find(":selected")
+
+    addHistory(currSel, currSel2, true);
+
+    currSel = currSel.val()
+    currSel2 = currSel2.val()
+
     $(".emote1").attr("src", `assets/fusions/${currSel}_0.png`);
 
-    currSel = $('#emo2').find(":selected").val();
-    $(".emote2").attr("src", `assets/fusions/${currSel}_0.png`);
+    $(".emote2").attr("src", `assets/fusions/${currSel2}_0.png`);
 
     let one = $('#emo1').find(":selected");
     let two = $('#emo2').find(":selected");
@@ -119,8 +171,8 @@ function update() {
 
 function flip() {
     let cache = $('#emo1').find(":selected").val();
-    $('#emo1').val($('#emo2').find(":selected").val()).change()
-    $('#emo2').val(cache).change()
+    $('#emo1').val($('#emo2').find(":selected").val())
+    $('#emo2').val(cache)
 
     update()
 }
@@ -129,8 +181,8 @@ function random() {
     $('#emo1').val(Math.floor(Math.random() * (mojicount - 1)) + 1)
     $('#emo2').val(Math.floor(Math.random() * (mojicount - 1)) + 1)
 
-    update($('#emo1').val())
-    update($('#emo2').val())
+    update()
+    
 }
 
 function revealSave() {
@@ -142,31 +194,61 @@ $(document).ready(function () {
 
     /* $("#credit").text(`${(mojicount - 1) ** 2} emojis fusioned manually by @MrXCube`) */
 
+
     let names = mojinames.split(";")
-    for (var i = 1; i < mojicount; i++) {
+    for (var i = 1; i < mojicount+1; i++) {
 
         let names = mojinames.split(";")
 
         $('#emo1').append($('<option>', {
             value: i,
-            text: names[i - 1]
+            text: names[i-1]
         }));
 
         $('#emo2').append($('<option>', {
             value: i,
-            text: names[i - 1]
+            text: names[i-1]
         }));
 
+    }
+
+
+    $(".emote1").attr("src", `assets/fusions/1_0.png`);
+    $(".emote2").attr("src", `assets/fusions/1_0.png`);
+
+
+
+    if(storeComp){
+
+        if(localStorage.getItem(saveKey) !== null) {
+            let newHistoryHistory = localStorage.getItem(saveKey).split("|");
+            let l = newHistoryHistory.length
+            for(let i = 0; i<l; i++){
+                let split = newHistoryHistory[i].split("_")
+                let A = parseInt(split[0]) 
+                let B = parseInt(split[1]) 
+                addHistory($(`#emo1 option[value="${A}"]`), $(`#emo2 option[value="${B}"]`), false)
+            }
+        }
     }
 
     $('#emo1').change(function () { update() })
 
     $('#emo2').change(function () { update() })
 
-
-    $(".emote1").attr("src", `assets/fusions/1_0.png`);
-    $(".emote2").attr("src", `assets/fusions/1_0.png`);
     update();
+
+    $(".frame").show();
+    $("html").css("background-color","white");
+
+/*     for(let x = 1; x<mojicount+1; x++) {  //Find all
+        for(let y = 1; y<mojicount+1; y++) {
+            $('#emo1').val(Math.floor(x))
+            $('#emo2').val(Math.floor(y))
+        
+            update()
+        }
+    } */
 
 })
 
@@ -176,8 +258,6 @@ $(window).on('load', function () {
     let inv = false
     let saveReveal = 0.0
     let reveal = false
-
-    console.log(resultRot)
 
 
     $(".tappy").click(function () {
@@ -219,6 +299,10 @@ $(window).on('load', function () {
                 $(obj).css("transform", `rotate(${$(obj).data("rot")}deg)`)
 
                 $(obj).data("rot", $(obj).data("rot") * 0.85)
+
+                if ($(obj).attr('class').includes("result") && crown) {
+                    $("#crown").css("transform", `rotate(${$(obj).data("rot")}deg)`)
+                } 
 
             }
 
