@@ -178,8 +178,8 @@ function flip() {
 }
 
 function random() {
-    $('#emo1').val(Math.floor(Math.random() * (mojicount - 1)) + 1)
-    $('#emo2').val(Math.floor(Math.random() * (mojicount - 1)) + 1)
+    $('#emo1').val(Math.floor(Math.random() * (mojicount)) + 1)
+    $('#emo2').val(Math.floor(Math.random() * (mojicount)) + 1)
 
     update()
     
