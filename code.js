@@ -23,7 +23,7 @@ function capitalizeFirstLetter(string) {
 const storeComp = typeof(Storage) !== "undefined"
 
 const credits = [
-    {"name": "MrXCube", "created": ["1-36"]},
+    {"name": "MrXCube", "created": ["1-36", 38]},
     {"name": "R3DZ3R", "created": [0,37]}
 
 ]
