@@ -49,7 +49,7 @@ credits.forEach(function(x, creditIndex) {
 })
 
 const mojinames =
-    "Surprised;Blush;Confused;Crying;Dissapoint;Flush;Happy;Laugh;Putoff;Puzzled;Sad;Screaming;Sleep;Sweating;Suspicious;SweatSmile;Think;Troll;Flipped;Wink;Star;Imp;Wiki;Coin;Love;MindBlown;Yes;No;SweatThink;Relief;Nope;Concerned;Skull;Shocked;Cool;LelCube;Zeriously";
+    "Surprised;Blush;Confused;Crying;Dissapoint;Flush;Happy;Laugh;Putoff;Puzzled;Sad;Screaming;Sleep;Sweating;Suspicious;SweatSmile;Think;Troll;Flipped;Wink;Star;Imp;Wiki;Coin;Love;MindBlown;Yes;No;SweatThink;Relief;Nope;Concerned;Skull;Shocked;Cool;LelCube;Zeriously;Elated";
 let mojicount = mojinames.split(";").length
 
 let historyHistory= []
